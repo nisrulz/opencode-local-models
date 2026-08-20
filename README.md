@@ -43,7 +43,7 @@ does not report those fields. Any engine can be absent. The plugin simply skips 
 Install the plugin into opencode's global plugins directory:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh | bash
 ```
 
 > The script copies the plugin to `~/.config/opencode/plugins/opencode-local-models.js`
@@ -61,14 +61,6 @@ engine is running with a chat model loaded, you will see live entries like
 
 > Models are discovered when opencode starts, not while it runs. If you add or
 remove models on an engine, restart opencode so the picker catches up.
-
-The release tag pins the installer and the installer defaults to that same
-version. Use `--version` only when you need a different plugin version:
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh \
-  | bash -s -- --version v0.2.0
-```
 
 ## Docs
 

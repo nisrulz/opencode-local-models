@@ -67,24 +67,25 @@ the provider block into the opencode config. Running it from a checkout uses
 the local files. Piping it through `curl` from GitHub works too, because it
 falls back to the remote source when no local copy is present.
 
-### Versioned installs
+### Installer versions
 
-Release tags pin both the installer and the plugin source. Use the same tag in
-both URLs:
+The installer script lives on `main`. Its default version points to the latest
+tagged release:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
   | bash
 ```
 
-For a project-level install, pass the plugin directory after the version:
+For a project-level install, pass the plugin directory after the script:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
   | bash -s -- .opencode/plugins
 ```
 
-From a checkout, select the release with Make:
+Use Make for a specific version. Make checks out the tag before it installs the
+plugin:
 
 ```sh
 make install VERSION=v0.1.0
@@ -94,7 +95,7 @@ Prepare the next release with Make. This updates the default used by the
 installer in the next tag:
 
 ```sh
-make set-version VERSION=v0.2.0
+make set-version VERSION=v0.1.0
 make test
 git diff -- install.sh
 ```
@@ -103,7 +104,7 @@ The Make target calls `scripts/set-version.js`. Run the script directly when
 you need to use it outside Make:
 
 ```sh
-node scripts/set-version.js v0.2.0
+node scripts/set-version.js v0.1.0
 ```
 
 Then commit the change and create the matching tag. The version must use a

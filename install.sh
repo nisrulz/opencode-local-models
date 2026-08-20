@@ -91,13 +91,15 @@ else
   CONFIG_FILE="${POSITIONAL[1]:-opencode.json}"
 fi
 
-echo "→ Installing plugin to $(display_path "$PLUGIN_DIR")"
+echo "→ Installing plugin opencode-local-models plugin@$VERSION"
+echo "    → To $(display_path "$PLUGIN_DIR")"
 mkdir -p "$PLUGIN_DIR"
 if [[ "$PLUGIN_SOURCE" == https://* || "$PLUGIN_SOURCE" == file://* ]]; then
   curl -fsSL "$PLUGIN_SOURCE" -o "$PLUGIN_DIR/$PLUGIN_NAME"
 else
   cp "$PLUGIN_SOURCE" "$PLUGIN_DIR/$PLUGIN_NAME"
 fi
+echo
 echo "✓ Plugin written to $(display_path "$PLUGIN_DIR")/$PLUGIN_NAME"
 
 echo "→ Adding ollama/lmstudio providers to $(display_path "$CONFIG_FILE")"
