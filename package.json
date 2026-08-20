@@ -1,0 +1,34 @@
+{
+	"name": "opencode-local-models",
+	"version": "0.1.0",
+	"description": "Auto-discover Ollama and LM Studio chat models in opencode at startup, with no hardcoded model lists.",
+	"type": "module",
+	"main": "opencode-local-models.js",
+	"files": [
+		"opencode-local-models.js"
+	],
+	"keywords": [
+		"opencode",
+		"opencode-plugin",
+		"ollama",
+		"lmstudio",
+		"local-llm",
+		"openai-compatible"
+	],
+	"license": "Apache-2.0",
+	"author": "Nishant Srivastava",
+	"scripts": {
+		"test": "node --test --test-reporter=./tests/reporter.js tests/e2e.test.js"
+	},
+	"peerDependencies": {
+		"@opencode-ai/plugin": ">=1.14.0"
+	},
+	"peerDependenciesMeta": {
+		"@opencode-ai/plugin": {
+			"optional": true
+		}
+	},
+	"engines": {
+		"node": ">=18"
+	}
+}
