@@ -1,4 +1,6 @@
-.PHONY: help install test doctor
+.PHONY: help install set-version test doctor
+
+VERSION ?= v0.1.0
 
 .DEFAULT_GOAL := help
 
@@ -13,7 +15,10 @@ help: ## List all commands
 	@echo "For details, see https://github.com/nisrulz/opencode-local-models"
 
 install: ## Install the plugin into opencode
-	@bash install.sh || (echo "✗ Install failed."; exit 1)
+	@bash install.sh --version "$(VERSION)" || (echo "✗ Install failed."; exit 1)
+
+set-version: ## Set the default installer version
+	@node scripts/set-version.js "$(VERSION)"
 
 test: ## Run the tests
 	@echo "→ Running tests"

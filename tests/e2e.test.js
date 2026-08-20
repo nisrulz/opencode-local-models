@@ -110,3 +110,35 @@ test("unreachable engines leave providers empty", async () => {
   assert.deepEqual(config.provider.ollama, { models: {}, whitelist: [] })
   assert.deepEqual(config.provider.lmstudio, { models: {}, whitelist: [] })
 })
+
+test("invalid model ids are ignored", async () => {
+  const ollama = await startEngine({
+    "/api/tags": () => ({
+      models: [
+        { name: "__proto__", capabilities: ["completion"] },
+        { name: "constructor", capabilities: ["completion"] },
+        { name: 42, capabilities: ["completion"] },
+        { name: "valid-model", capabilities: ["completion"] },
+      ],
+    }),
+  })
+  const lmstudio = await startEngine({
+    "/api/v1/models": () => ({
+      models: [
+        { key: "prototype", type: "chat" },
+        { key: "valid-model", type: "chat" },
+      ],
+    }),
+  })
+  try {
+    const config = await runPlugin(
+      `http://127.0.0.1:${ollama.port}/api/tags`,
+      `http://127.0.0.1:${lmstudio.port}/api/v1/models`,
+    )
+    assert.deepEqual(config.provider.ollama.models, { "valid-model": { name: "valid-model" } })
+    assert.deepEqual(config.provider.lmstudio.models, { "valid-model": { name: "valid-model" } })
+  } finally {
+    await ollama.close()
+    await lmstudio.close()
+  }
+})

@@ -25,10 +25,23 @@ function debugLog(enabled, ...args) {
   if (enabled) console.error("[opencode-local-models]", ...args)
 }
 
+function safeUrlForLog(url) {
+  try {
+    const parsed = new URL(url)
+    parsed.username = ""
+    parsed.password = ""
+    parsed.search = ""
+    parsed.hash = ""
+    return parsed.toString()
+  } catch {
+    return "[invalid URL]"
+  }
+}
+
 // Fetch JSON from a URL. Throw on network error or non-2xx response.
 async function fetchJSON(url, timeout) {
   const res = await fetch(url, { signal: AbortSignal.timeout(timeout) })
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`)
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${safeUrlForLog(url)}`)
   return res.json()
 }
 
@@ -47,7 +60,8 @@ async function discoverOllama(url, timeout, debug) {
     const data = await fetchJSON(url, timeout)
     for (const model of data?.models ?? []) {
       const id = model?.name
-      if (!id) continue
+      if (typeof id !== "string" || id.length === 0) continue
+      if (id === "__proto__" || id === "constructor" || id === "prototype") continue
       if (isEmbeddingOnly(model?.capabilities)) continue
       models[id] = { name: id }
     }
@@ -65,7 +79,8 @@ async function discoverLmStudio(url, timeout, debug) {
     for (const model of data?.models ?? []) {
       if (model?.type === "embedding") continue
       const id = model?.key
-      if (!id) continue
+      if (typeof id !== "string" || id.length === 0) continue
+      if (id === "__proto__" || id === "constructor" || id === "prototype") continue
       const context =
         model?.loaded_instances?.[0]?.config?.context_length ||
         model?.max_context_length ||

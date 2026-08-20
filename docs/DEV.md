@@ -67,6 +67,48 @@ the provider block into the opencode config. Running it from a checkout uses
 the local files. Piping it through `curl` from GitHub works too, because it
 falls back to the remote source when no local copy is present.
 
+### Versioned installs
+
+Release tags pin both the installer and the plugin source. Use the same tag in
+both URLs:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh \
+  | bash
+```
+
+For a project-level install, pass the plugin directory after the version:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh \
+  | bash -s -- .opencode/plugins
+```
+
+From a checkout, select the release with Make:
+
+```sh
+make install VERSION=v0.1.0
+```
+
+Prepare the next release with Make. This updates the default used by the
+installer in the next tag:
+
+```sh
+make set-version VERSION=v0.2.0
+make test
+git diff -- install.sh
+```
+
+The Make target calls `scripts/set-version.js`. Run the script directly when
+you need to use it outside Make:
+
+```sh
+node scripts/set-version.js v0.2.0
+```
+
+Then commit the change and create the matching tag. The version must use a
+release-tag format such as `v0.1.0` or `v0.1.0-rc.1`.
+
 ### Doctor
 
 `doctor.sh` checks node, bash, curl, git, opencode, and the installed plugin.
