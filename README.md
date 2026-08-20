@@ -55,7 +55,7 @@ plugin needs no extra config. For a project-level or manual install, see the
 
 **Restart opencode, run `/models`, and search for `ollama` or `lmstudio`. Once an
 engine is running with a chat model loaded, you will see live entries like
-`ollama/llm2.5:8b`.**
+`ollama/lfm2.5:8b`.**
 
 ![Screenshot](screenshot.png)
 
