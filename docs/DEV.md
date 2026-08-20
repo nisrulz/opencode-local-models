@@ -88,14 +88,14 @@ Use Make for a specific version. Make checks out the tag before it installs the
 plugin:
 
 ```sh
-make install VERSION=v0.1.0
+make install VERSION=v0.1.1
 ```
 
 Prepare the next release with Make. This updates the default used by the
 installer in the next tag:
 
 ```sh
-make set-version VERSION=v0.1.0
+make set-version VERSION=v0.1.1
 make test
 git diff -- install.sh
 ```
@@ -104,11 +104,11 @@ The Make target calls `scripts/set-version.js`. Run the script directly when
 you need to use it outside Make:
 
 ```sh
-node scripts/set-version.js v0.1.0
+node scripts/set-version.js v0.1.1
 ```
 
 Then commit the change and create the matching tag. The version must use a
-release-tag format such as `v0.1.0` or `v0.1.0-rc.1`.
+release-tag format such as `v0.1.1` or `v0.1.1-rc.1`.
 
 ### Doctor
 

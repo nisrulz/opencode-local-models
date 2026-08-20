@@ -1,7 +1,7 @@
 .PHONY: help install set-version test doctor
 
 CHECKOUT_VERSION := $(shell git describe --tags --exact-match HEAD 2>/dev/null)
-VERSION ?= $(if $(CHECKOUT_VERSION),$(CHECKOUT_VERSION),v0.1.0)
+VERSION ?= v0.1.1
 VERSION_SOURCE := $(origin VERSION)
 
 .DEFAULT_GOAL := help

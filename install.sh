@@ -7,14 +7,14 @@ set -euo pipefail
 # then adds the ollama and lmstudio providers to your opencode config.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh | bash -s -- --version v0.1.0
+#   curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh | bash -s -- --version v0.1.1
 #   # project-level install instead of global:
-#   curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.0/install.sh | bash -s -- --version v0.1.0 .opencode/plugins
+#   curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh | bash -s -- --version v0.1.1 .opencode/plugins
 #
 # The file is auto-loaded from the plugins directory at opencode startup.
 # No "plugin" entry is needed in the config.
 
-DEFAULT_VERSION="v0.1.0"
+DEFAULT_VERSION="v0.1.1"
 VERSION="${PLUGIN_VERSION:-$DEFAULT_VERSION}"
 POSITIONAL=()
 
@@ -22,7 +22,7 @@ while (($# > 0)); do
   case "$1" in
     --version)
       if (($# < 2)); then
-        echo "✗ --version requires a tag, for example v0.1.0." >&2
+        echo "✗ --version requires a tag, for example v0.1.1." >&2
         exit 1
       fi
       VERSION="$2"

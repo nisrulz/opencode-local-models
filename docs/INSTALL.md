@@ -23,7 +23,7 @@ To install a specific version, pass its tag to Make. Make checks out the tag
 before it runs the installer.
 
 ```sh
-make install VERSION=v0.1.0
+make install VERSION=v0.1.1
 ```
 
 If the tag does not exist, Make prints the available tags.

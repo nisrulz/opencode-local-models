@@ -1,6 +1,6 @@
 {
 	"name": "opencode-local-models",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Auto-discover Ollama and LM Studio chat models in opencode at startup, with no hardcoded model lists.",
 	"type": "module",
 	"main": "opencode-local-models.js",
