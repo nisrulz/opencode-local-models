@@ -1,4 +1,6 @@
-# opencode-local-models
+# opencode-local-models Plugin
+
+![Banner](github_banner.jpg)
 
 Auto-discovers **Ollama** and **LM Studio** chat models in [opencode](https://opencode.ai)
 at startup. No hardcoded model lists to keep in sync.
@@ -44,18 +46,20 @@ Install the plugin into opencode's global plugins directory:
 curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh | bash
 ```
 
-The script copies the plugin to `~/.config/opencode/plugins/opencode-local-models.js`
+> The script copies the plugin to `~/.config/opencode/plugins/opencode-local-models.js`
 and adds the `ollama` and `lmstudio` providers to `~/.config/opencode/opencode.json`.
 
-opencode auto-loads every file in the plugins directory when it starts, so the
+> opencode auto-loads every file in the plugins directory when it starts, so the
 plugin needs no extra config. For a project-level or manual install, see the
 [install instructions](/docs/INSTALL.md).
 
-Restart opencode, run `/models`, and search for `ollama` or `lmstudio`. Once an
+**Restart opencode, run `/models`, and search for `ollama` or `lmstudio`. Once an
 engine is running with a chat model loaded, you will see live entries like
-`ollama/llm2.5:8b`.
+`ollama/llm2.5:8b`.**
 
-Models are discovered when opencode starts, not while it runs. If you add or
+![Screenshot](screenshot.png)
+
+> Models are discovered when opencode starts, not while it runs. If you add or
 remove models on an engine, restart opencode so the picker catches up.
 
 ## Docs
