@@ -43,7 +43,7 @@ does not report those fields. Any engine can be absent. The plugin simply skips 
 Install the plugin into opencode's global plugins directory:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh | bash
 ```
 
 > The script copies the plugin to `~/.config/opencode/plugins/opencode-local-models.js`

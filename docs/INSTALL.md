@@ -3,11 +3,11 @@
 ## Latest tagged version
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh \
   | bash
 ```
 
-The `main` installer uses the default version set for the latest release.
+The installer URL is pinned to the latest tagged release.
 
 ## Install from a checkout
 
@@ -31,7 +31,7 @@ If the tag does not exist, Make prints the available tags.
 For a project-level install, pass `.opencode/plugins` to the installer:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh \
   | bash -s -- .opencode/plugins
 ```
 

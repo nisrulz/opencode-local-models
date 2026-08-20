@@ -69,18 +69,17 @@ falls back to the remote source when no local copy is present.
 
 ### Installer versions
 
-The installer script lives on `main`. Its default version points to the latest
-tagged release:
+The installer URL is pinned to the latest tagged release:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh \
   | bash
 ```
 
 For a project-level install, pass the plugin directory after the script:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/nisrulz/opencode-local-models/v0.1.1/install.sh \
   | bash -s -- .opencode/plugins
 ```
 
